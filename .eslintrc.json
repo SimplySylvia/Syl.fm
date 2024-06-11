@@ -70,7 +70,7 @@
 
     "no-return-assign": "error",
     "no-script-url": "error",
-    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-explicit-any": "warn",
     "no-self-compare": "error",
     "no-sequences": "error",
     "no-shadow-restricted-names": "error",

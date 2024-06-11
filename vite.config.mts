@@ -3,6 +3,9 @@ import react from "@vitejs/plugin-react-swc";
 import eslint from "vite-plugin-eslint";
 import Pages from "vite-plugin-pages";
 import path from "path";
+import 'dotenv/config';
+
+const backend_url = `http://localhost:${process.env.VITE_BACKEND_PORT}/`
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -24,10 +27,13 @@ export default defineConfig({
   server: {
     proxy: {
       "/api/v1": {
-        target: "http://localhost:5000/",
+        target: backend_url,
         changeOrigin: true,
-        // rewrite: (path) => path.replace(/^\/api\/v1/, ""),
       },
+      "/socket.io": {
+        target: backend_url,
+        ws: true,
+      }
     },
     port: 5100,
   },
