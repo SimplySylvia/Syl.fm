@@ -4,7 +4,7 @@
   "description": "A fun little live radio station.",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently -n vite,api \"npm run vite:dev\" \"npm run api:dev\"",
+    "dev": "concurrently -n vite,api -c bgCyan,bgGreen \"npm run vite:dev\" \"npm run api:dev\"",
     "build": "npm run vite:build && npm run api:build",
     "start": "node ./.local/express/dist/api.js",
     "vite:build": "vite build --emptyOutDir",

@@ -24,6 +24,7 @@ export const downloadFileFromGoogleDrive = async (
     response.data.on("data", (chunk: Buffer): void => {
       downloadedSize += chunk.length;
       const progress = Math.round((downloadedSize / totalSize) * 100);
+
       if (progress !== previousProgress) {
         console.log(`Downloading ${progress.toFixed(2)}%`);
         previousProgress = progress;
@@ -41,17 +42,14 @@ export const downloadFileFromGoogleDrive = async (
   }
 };
 
-export const getGistFileContent = async (
-  gistId: string,
-  fileName: string
-): Promise<string | Error> => {
+export const getGistFileContent = async (gistId: string, fileName: string): Promise<string> => {
   try {
     const response = await axios.get(`https://api.github.com/gists/${gistId}`);
     const files = response.data.files;
     return files[fileName].content;
   } catch (err) {
     console.error(err);
-    return new Error("Error while fetching gist file content");
+    return "Error while fetching gist file content";
   }
 };
 
