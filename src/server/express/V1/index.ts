@@ -15,7 +15,7 @@ import {
   getGistFileContent,
   getTrackDuration,
   exitHandler,
-} from "@/utils/utils";
+} from "@/server/utils/tracks";
 import { GistTrackList, TrackInfo } from "@/typings/trackInfo";
 
 // configs
@@ -162,7 +162,7 @@ const playTrack = async () => {
     };
 
     setTimeout(() => {
-      console.log(`Playing track: ${trackInfo.title}`);
+      console.log(`\nPlaying track: ${trackInfo.title}`);
       io.sockets.emit("track_changed", trackInfo);
     }, manualDelayTrackChangedEventSeconds * 1000);
   } catch (error) {

@@ -26,7 +26,6 @@ export const downloadFileFromGoogleDrive = async (
       const progress = Math.round((downloadedSize / totalSize) * 100);
 
       if (progress !== previousProgress) {
-        console.log(`Downloading ${progress.toFixed(2)}%`);
         previousProgress = progress;
         process.stdout.write(`\rDownloading file: ${progress}%`);
       }

@@ -3,9 +3,10 @@ import react from "@vitejs/plugin-react-swc";
 import eslint from "vite-plugin-eslint";
 import Pages from "vite-plugin-pages";
 import path from "path";
-import 'dotenv/config';
+import "dotenv/config";
 
-const backend_url = `http://localhost:${process.env.VITE_BACKEND_PORT}/`
+const backend_url = `http://localhost:${process.env.VITE_BACKEND_PORT}/`;
+const socket_url = `ws://localhost:${process.env.VITE_SOCKET_PORT}/`;
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -31,9 +32,9 @@ export default defineConfig({
         changeOrigin: true,
       },
       "/socket.io": {
-        target: backend_url,
+        target: socket_url,
         ws: true,
-      }
+      },
     },
     port: 5100,
   },
