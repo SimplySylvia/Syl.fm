@@ -21,6 +21,9 @@ services:
       target: prod
     networks:
       - boilerplate-network
+    environment:
+      - RADIO_GIST_ID=${RADIO_GIST_ID}
+      - RADIO_PLAYLIST_FILE=${RADIO_PLAYLIST_FILE}
 
 networks:
   boilerplate-network:

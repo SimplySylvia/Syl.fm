@@ -17,6 +17,11 @@ export const downloadFileFromGoogleDrive = async (
     let downloadedSize = 0;
     let previousProgress = 0;
 
+    if (!fs.existsSync(destinationFile)) {
+      console.log("File does not exist, creating new file");
+      fs.writeFileSync(destinationFile, "");
+    }
+
     const writer = fs.createWriteStream(destinationFile);
 
     response.data.pipe(writer);
