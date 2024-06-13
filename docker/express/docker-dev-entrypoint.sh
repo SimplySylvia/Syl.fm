@@ -8,9 +8,6 @@ set -eu
 # change from the time the docker image was built to the time the image was used to create the
 # container. In prod the dependencies are locked, so we don't need to re-run.
 npm i
-apk update
-apk add
-apk add ffmpeg
 
 # From https://stackoverflow.com/a/39082923/2782380:
 # take any command line arguments passed to entrypoint.sh and exec them as a command. The intention

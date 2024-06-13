@@ -5,6 +5,7 @@ ARG EXPRESS_BASE_IMAGE=node:20.11.0-alpine
 # BASE image  #
 # # # # # # # #
 FROM $EXPRESS_BASE_IMAGE as base
+RUN apk add --no-cache ffmpeg
 
 RUN mkdir /serversrc
 WORKDIR /serversrc
@@ -19,12 +20,13 @@ COPY package*.json .
 RUN npm install
 
 COPY . /serversrc
-RUN npm run api:build
+RUN npm run build
 
 # # # # # # # #
 # PROD image  #
 # # # # # # # #
 FROM $EXPRESS_BASE_IMAGE AS prod
+RUN apk add --no-cache ffmpeg
 
 # Copy build file
 COPY --from=builder /serversrc/.local/express/dist/api.js /
@@ -38,6 +40,7 @@ CMD "node" "/api.js"
 # DEV image #
 # # # # # # #
 FROM base AS dev
+RUN apk add --no-cache ffmpeg
 
 COPY . /serversrc
 
