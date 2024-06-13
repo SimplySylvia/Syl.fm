@@ -8,7 +8,7 @@
     "build": "npm run vite:build && npm run api:build",
     "start": "node ./.local/express/dist/api.js",
     "vite:build": "vite build --emptyOutDir",
-    "vite:dev": "vite",
+    "vite:dev": "vite --host",
     "api:build": "rimraf ./.local/express/dist && esbuild --sourcemap ./src/server/express/server.ts --bundle --format=cjs --platform=node --outfile=./.local/express/dist/api.js",
     "api:build:watch": "npm run api:build -- --watch",
     "api:dev": "concurrently -n build,serve \"npm run api:build:watch\" \"wait-on ./.local/express/dist/api.js && nodemon --inspect=8229 --legacy-watch --watch ./.local/express/dist ./.local/express/dist/api.js ./src/server\"",

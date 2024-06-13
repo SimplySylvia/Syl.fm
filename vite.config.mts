@@ -6,7 +6,7 @@ import path from "path";
 import "dotenv/config";
 
 const backend_url = `http://localhost:${process.env.VITE_BACKEND_PORT}/`;
-const socket_url = `ws://localhost:${process.env.VITE_SOCKET_PORT}/`;
+const socket_url = `http://localhost:${process.env.VITE_SOCKET_PORT}/`;
 
 // https://vitejs.dev/config/
 export default defineConfig({
