@@ -23,7 +23,8 @@ const radio = openRadio();
 const app: Application = express();
 
 const playlistFile = (process.env.RADIO_PLAYLIST_FILE as string) || "sylfm.tracks";
-const socketPort = parseInt(process.env.VITE_SOCKET_PORT as string) || 5001;
+const socketPort =
+  parseInt(process.env.VITE_SOCKET_PORT as string) || parseInt(process.env.PORT as string) || 3001;
 const trackPath = path.join(__dirname, "../..", "vite/dist/tracks", "radio.mp3");
 
 app.use(express.json({ limit: "20mb" }));
@@ -81,17 +82,6 @@ app.get(`${ROOT_URL_V1}/stream`, (req: Request, res: Response) => {
 // generic 404 handler
 app.use(`${ROOT_URL_V1}/*`, (req: Request, res: Response): Response<{ message: string }> => {
   return res.status(404).json({ message: "API endpoint not found" });
-});
-
-// Generic error handler for failed requests
-interface ErrorCatch {
-  status?: number;
-  message?: string;
-}
-
-app.use((err: ErrorCatch, req: Request, res: Response) => {
-  console.error(err);
-  return res.status(500).json({ error: "Internal Server Error" });
 });
 
 // server creation
